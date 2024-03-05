@@ -1,5 +1,13 @@
 # Save to local pdf file
 
+## Clone project
+
+clone project with git
+
+```bash
+  git clone https://github.com/Nico-Schonfeld/pdf-file-to-local-directory.git
+```
+
 ## Installation
 
 Install project with npm
