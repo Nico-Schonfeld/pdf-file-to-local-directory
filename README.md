@@ -16,7 +16,7 @@ To run dev
   npm run dev
 ```
 
-## Add file in root
+## Add folder static in root
 
 Create a folder in the root path static/pdf to save the files.
 
