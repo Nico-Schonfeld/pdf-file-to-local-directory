@@ -35,3 +35,41 @@ Create a folder in the root path static/pdf to save the files.
 - /
 
 - /api/upload
+
+## Delete file
+
+```bash
+  async deleteBrochuresByIdService(data: DeleteAdminBrochuresObjectType) {
+    try {
+      if (!data || !data.pdfSrc || !data.fundNum || !data.categoryId) {
+        throw new Error("Couldn't perform task");
+      }
+      const folderPath = `${process.cwd()}${data.pdfSrc}`;
+
+      const deleted = await removeImgFile(folderPath);
+
+      if (deleted) {
+        const deletedBrochures =
+          await this.adminBrochuresDAO.deleteBrochuresBySrc(data);
+        return deletedBrochures;
+      }
+      return { error: true, success: false };
+    } catch (error) {
+      return error;
+    }
+  }
+
+
+import * as promises from "fs/promises";
+import fs from "fs";
+
+export const removeImgFile = async (fullPath: string) => {
+  if (fullPath && fs.existsSync(fullPath)) {
+    const result = await promises.unlink(fullPath);
+
+    return !fs.existsSync(fullPath);
+  }
+  return !fs.existsSync(fullPath);
+};
+
+```
